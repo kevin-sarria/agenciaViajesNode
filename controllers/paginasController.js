@@ -1,9 +1,10 @@
 import { Viaje } from "../models/Viaje.js";
-
+import { Testimonial } from "../models/Testimoniales.js";
 
 const paginaInicio = (req, res) => { // req - lo que enviamos : res - lo que express nos responde
     res.render('inicio', {
-        pagina: 'Inicio'
+        pagina: 'Inicio',
+        clase: 'home'
     });
 }
 
@@ -26,11 +27,19 @@ const paginaViajes = async(req, res) => { // req - lo que enviamos : res - lo qu
     });
 }
 
-const paginaTestimoniales = (req, res) => { // req - lo que enviamos : res - lo que express nos responde
+const paginaTestimoniales = async(req, res) => { // req - lo que enviamos : res - lo que express nos responde
     
-    res.render('testimoniales', {
-        pagina: 'Testimoniales'
-    });
+    try {
+
+        const testimoniales = await Testimonial.findAll();
+
+        res.render('testimoniales', {
+            pagina: 'Testimoniales',
+            testimoniales
+        });
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 // Muestra una pagina por su slug

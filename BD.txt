@@ -1,0 +1,4 @@
+
+CREATE TABLE testimoniales( id INT(11) AUTO_INCREMENT, nombre VARCHAR(60), correo VARCHAR(60), mensaje TEXT, PRIMARY KEY(id) );
+
+
